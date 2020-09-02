@@ -1,0 +1,18 @@
+<nav class="navbar navbar-default navbar-expand-lg  bg-light">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a href="/" class="navbar-brand">YelpCamp</a>
+        </div>
+        <div class="pull-right" id="navbar">
+            <ul class="nav navbar-expand-lg">
+                <% if(!user){ %>
+                    <li class="nav-item"><a href="/login" class="nav-link">Login</a></li>
+                    <li class="nav-item"><a href="/register" class="nav-link">Sing Up</a></li>
+                <% } else { %>
+                    <li class="nav-item text-dark nav-link"><%= user.username %></li>
+                    <li class="nav-item"><a href="/logout" class="nav-link">Logout</a></li>
+                <% } %>
+            </ul>
+        </div>
+    </div>
+</nav>

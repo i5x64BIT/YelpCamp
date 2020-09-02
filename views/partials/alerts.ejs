@@ -1,0 +1,8 @@
+<% if(!(typeof message === 'undefined' || message === null)){ %>
+    <% if(message.warning){%>
+    <p class="alert alert-warning" role="alert"><%= message%></p>
+    <% } %>
+    <% if(message.danger){%>
+        <p class="alert alert-danger" role="alert"><%= message%></p>
+    <% } %>
+<% } %>

@@ -1,0 +1,11 @@
+img {
+	width: 100%;
+}
+#cards {
+	display: flex;
+	flex-wrap: wrap;
+}
+.navbar-custom > li {
+	/* <- this affects just my footer navbar */
+	display: inline-block;
+}

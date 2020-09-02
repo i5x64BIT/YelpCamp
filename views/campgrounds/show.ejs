@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    
+    <link rel="stylesheet" href="../css/style.css">
+    <title>Campgrounds</title>
+</head>
+<body>
+    <%- include('../partials/navbar')-%>
+    <%- include('../partials/alerts')-%>
+    <div class="container">
+        <div class=" container jumbotron" style="margin-top: 25px;">
+            <div class="column justify-content-center">
+                <img src="<%= camp.image %>" class="rounded">
+                <hr>
+                <h2>
+                    <%= camp.name %>
+                </h2>
+                <p>
+                    <%= camp.desc %>
+                </p>
+                <p><em>Posted by <%= camp.author.username %></em></p>
+            </div>
+            <% if(currentUser && camp.author.id.equals(currentUser.id)){ %>
+                <form action="/campgrounds/<%= camp.id %>?_method=delete" method="POST">
+                    <a href="/campgrounds/<%= camp.id %>/edit" class="btn btn-warning sm">Edit</a>
+                    <input type="submit" value="Remove" class="btn btn-danger sm">
+                </form>
+            <% } %>
+        </div>
+        <a href="/campgrounds/<%= camp.id %>/comments/new" class="btn btn-warning">Post a Comment</a>
+        <% for(comment of camp.comments){ %>
+            <div id="comments" class="media">
+                <div class="media-body">
+                    <h5 class="mt-0"><%= comment.author.username %></h5>
+                    <%= comment.body %>
+                </div>
+                <% if(currentUser && comment.author.id.equals(currentUser.id)){ %>
+                    <form action="/campgrounds/<%= camp.id %>/comments/<%= comment._id %>?_method=delete" method="POST">
+                        <a href="/campgrounds/<%= camp.id %>/comments/<%= comment._id %>/edit" class="btn btn-warning btn-xs">Edit</a>
+                        <input type="submit" value="Remove" class="btn btn-danger btn-xs">
+                    </form>
+                <% } %>
+            </div>
+        <% } %>
+    </div>
+    <a href="/campgrounds" class="btn btn-outline-secondary">Back to All Campgrouds</a>
+    <footer>TM YelpCamp 2020</footer>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>

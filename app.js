@@ -23,7 +23,7 @@ app.use(flash());
 
 app.use(
 	session({
-		secret: 'wefg12Cf',
+		secret: 'PLACEHOLDER_SECRET',
 		resave: false,
 		saveUninitialized: false
 	})
@@ -43,6 +43,6 @@ app.use('/campgrounds', require('./routes/campgrounds'));
 app.use('/campgrounds/:id/comments', require('./routes/comments'));
 app.use(require('./routes/auth'));
 
-app.listen(80, '192.168.1.22', () => {
+app.listen(80, 'PLACEHOLDER_IP', () => {
 	console.log('Listening on port 80');
 });
